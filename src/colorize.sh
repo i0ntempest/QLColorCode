@@ -45,7 +45,7 @@ case ${target} in
     *.fxml )
         lang=fx
         ;;
-    *.s | *.s79 )
+    *.s | *.s79 | *.S | *.asm )
         lang=assembler
         ;;
     *.sb )
@@ -74,7 +74,7 @@ case ${target} in
         lang=applescript
         reader=(/usr/bin/osadecompile ${target})
         ;;
-    *.plist )
+    *.plist | *.strings )
         lang=xml
         reader=(/usr/bin/plutil -convert xml1 -o - ${target})
         ;;

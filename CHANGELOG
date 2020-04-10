@@ -1,8 +1,12 @@
+2.2.1
+    * Support for Xcode string resources file
+    * Support for more assembly file extensions
 2.2.0:
-    * Dark mode support!!!!
+    * Dark mode support!!!! See README for how to change themes
     * Golang and JetBrain IML support
     * MacPorts installed highlight is now in PATH
     * Support more file types
+    * Java class file support removed
 2.1.0:
     * Add option to preview file as RTF  (thanks @silum).
     * Add Kotlin/Gradle (thanks @sonique6784).

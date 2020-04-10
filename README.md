@@ -12,8 +12,8 @@ To install Highlight, [download the library manualy](http://www.andre-simon.de/z
 To install the plugin, just drag it to `~/Library/QuickLook`.
 You may need to create that folder if it doesn't already exist.
 
-Alternative, if you use [Homebrew-Cask](https://github.com/caskroom/homebrew-cask),
-install with `brew cask install qlcolorcode`.
+<!--Alternative, if you use [Homebrew-Cask](https://github.com/caskroom/homebrew-cask),
+install with `brew cask install qlcolorcode`.-->
 
 ## Settings
 If you want to configure `QLColorCode`, there are several `defaults` commands that could be useful:
@@ -31,7 +31,7 @@ Setting the font size (default is `10`):
 
     defaults write org.n8gray.QLColorCode fontSizePoints 9
 
-Setting the color style (default is `seashell` for light and `andes` for dark, see [all available themes](http://www.andre-simon.de/dokuwiki/doku.php?id=theme_examples)):
+Setting the color style (defaults are `seashell` for light and `andes` for dark, see [all available themes](http://www.andre-simon.de/dokuwiki/doku.php?id=theme_examples)):
 
     defaults write org.n8gray.QLColorCode hlThemeLight ide-xcode
     defaults write org.n8gray.QLColorCode hlThemeDark ide-xcode

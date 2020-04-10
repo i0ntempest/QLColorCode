@@ -34,11 +34,14 @@
 				<string>dyn.ah62d4rv4ge8045a</string>
 				<string>dyn.ah62d4rv4ge80w5pq</string>
 				<string>dyn.ah62d4rv4ge80s52</string>
+				<string>dyn.ah62d4rv4ge80c65r</string>
 				<string>com.apple.property-list</string>
 				<string>com.apple.rez-source</string>
+				<string>com.apple.xcode.strings-text</string>
 				<string>org.qt-project.ui</string>
 				<string>public.yaml</string>
 				<string>public.patch-file</string>
+				<string>public.assembly-source</string>
 				<string>public.c-source</string>
 				<string>public.c-header</string>
 				<string>public.c-plus-plus-source</string>
