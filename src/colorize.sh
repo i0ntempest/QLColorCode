@@ -5,6 +5,7 @@
 #
 # Copyright 2007 Nathaniel Gray.
 # Copyright 2012-2018 Anthony Gelibert.
+# Copyright 2020 Zhenfu Shi.
 #
 # Expects   $1 = path to resources dir of bundle
 #           $2 = name of file to colorize
@@ -38,9 +39,6 @@ case ${target} in
     *.graffle | *.ps )
         exit 1
         ;;
-    *.iml )
-        lang=xml
-        ;; 
     *.d )
         lang=make
         ;;
@@ -62,14 +60,14 @@ case ${target} in
         reader=(/usr/local/bin/jad -ff -dead -noctor -p -t ${target})
         plugin=(--plug-in java_library)
         ;;
-    *.pde | *.ino )
+    *.pde | *.ino | *.rc )
         lang=c
         ;;
-    *.c | *.cpp | *.ino )
+    *.c | *.cpp )
         lang=${target##*.}
         plugin=(--plug-in cpp_syslog --plug-in cpp_ref_cplusplus_com --plug-in cpp_ref_local_includes)
         ;;
-    *.rdf | *.xul | *.ecore )
+    *.rdf | *.xul | *.ecore | *.xml | *.iml )
         lang=xml
         ;;
     *.ascr | *.scpt )
@@ -86,10 +84,10 @@ case ${target} in
         fi
         lang=sql
         ;;
-    *.m )
+    *.m | *.mm )
         lang=objc
         ;;
-    *.pch | *.h )
+    *.pch | *.h | *.hpp )
         if grep -q "@interface" <(${target}) &> /dev/null; then
             lang=objc
         else
@@ -104,7 +102,7 @@ case ${target} in
         lang=py
         plugin=(--plug-in python_ref_python_org)
         ;;
-    *.sh | *.zsh | *.bash | *.csh | *.fish | *.bashrc | *.zshrc )
+    *.sh | *.zsh | *.bash | *.csh | *.fish | *.bashrc | *.zshrc | *.profile)
         lang=sh
         plugin=(--plug-in bash_functions)
         ;;
@@ -112,8 +110,11 @@ case ${target} in
         lang=scala
         plugin=(--plug-in scala_ref_scala_lang_org)
         ;;
-    *.cfg | *.properties | *.conf )
+    *.cfg | *.properties | *.conf | *.inf | *.ini )
         lang=ini
+        ;;
+    *.config )
+        lang=xml
         ;;
     *.kmt )
         lang=scala
@@ -126,7 +127,17 @@ esac
 debug "Resolved ${target} to language $lang"
 
 go4it () {
-    cmdOpts=(--plug-in reduce_filesize ${plugin} --plug-in outhtml_codefold --syntax=${lang} --quiet --include-style --font=${font} --font-size=${fontSizePoints} --style=${hlTheme} --encoding=${textEncoding} ${=extraHLFlags} --validate-input)
+    cmdOpts=(--plug-in reduce_filesize ${plugin} --plug-in outhtml_codefold --syntax=${lang} --quiet --include-style --font=${font} --font-size=${fontSizePoints} --encoding=${textEncoding} ${=extraHLFlags} --validate-input)
+
+    if [ "${thumb}" = "1" ]; then
+        cmdOpts=(--style=${hlThumbTheme} ${cmdOpts})
+    else
+        if [ "$(defaults read -g AppleInterfaceStyle)" = "Dark" ];then
+            cmdOpts=(--style=${hlThemeDark} ${cmdOpts})
+        else
+            cmdOpts=(--style=${hlThemeLight} ${cmdOpts})
+        fi
+    fi
 
     debug "Generating the preview"
     if [ "${thumb}" = "1" ]; then

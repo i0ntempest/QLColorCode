@@ -7,6 +7,9 @@
  *
  *  Modified by Anthony Gelibert on 9/5/12.
  *  Copyright 2012 Anthony Gelibert.
+ *
+ *  Modified by Zhenfu Shi on 4/10/20.
+ *  Copyright 2020 Zhenfu Shi.
  */
 
 #import <CoreFoundation/CoreFoundation.h>
@@ -74,7 +77,7 @@ NSData *colorizeURL(CFBundleRef bundle, CFURLRef url, int *status, int thumbnail
                                 [[NSProcessInfo processInfo] environment]];
 
     NSString *path = [env objectForKey: @"PATH"];
-    NSString *newPath = [path stringByAppendingString: @":/usr/local/bin:/usr/local/sbin"];
+    NSString *newPath = [path stringByAppendingString: @":/opt/local/bin:/usr/local/bin:/usr/local/sbin"];
     [env setObject: newPath forKey: @"PATH"];
 
     // Try to find highlight location
@@ -98,7 +101,10 @@ NSData *colorizeURL(CFBundleRef bundle, CFURLRef url, int *status, int thumbnail
 #endif
                                    @"10", @"fontSizePoints",
                                    @"Menlo", @"font",
-                                   @"edit-xcode", @"hlTheme",
+                                   //@"edit-xcode", @"hlTheme",
+                                   @"edit-xcode", @"hlThumbTheme",
+                                   @"seashell", @"hlThemeLight",
+                                   @"andes", @"hlThemeDark",
 //                                   @"-lz -j 3 -t 4 --kw-case=capitalize ", @"extraHLFlags",
                                    @"-t 4 --kw-case=capitalize ", @"extraHLFlags",
                                    @"/opt/local/bin/highlight", @"pathHL",
@@ -111,9 +117,11 @@ NSData *colorizeURL(CFBundleRef bundle, CFURLRef url, int *status, int thumbnail
     // This overrides hlTheme if hlThumbTheme is set and we're generating a thumbnail
     // (This way we won't irritate people with existing installs)
     // Admittedly, it's a little shady, overriding the set value, but I'd rather complicate the compiled code
-    if (thumbnail && [[env allKeys] containsObject:@"hlThumbTheme"]) {
-        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlTheme"];
-    }
+    /*if (thumbnail && [[env allKeys] containsObject:@"hlThumbTheme"]) {
+        //[env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlTheme"];
+        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlThemeDark"];
+        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlThemeLight"];
+    }*/
 
     NSString *cmd = [NSString stringWithFormat:
                      @"'%@/colorize.sh' '%@' '%@' %s",
