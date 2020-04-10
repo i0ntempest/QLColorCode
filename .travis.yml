@@ -1,3 +1,4 @@
 language: objective-c
 xcode_project: QLColorCode.xcodeproj
 xcode_scheme: Travis
+osx_image: xcode11.3

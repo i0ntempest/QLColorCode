@@ -1,6 +1,6 @@
 # QLColorCode
 
-[![Build Status](https://travis-ci.org/i0ntempest/QLColorCode.svg?branch=master)](https://travis-ci.org/i0ntempest/QLColorCode)
+<!--[![Build Status](https://travis-ci.org/i0ntempest/QLColorCode.svg?branch=master)](https://travis-ci.org/i0ntempest/QLColorCode)-->
 
 **Original project:** <http://code.google.com/p/qlcolorcode/>
 
