@@ -35,6 +35,8 @@
 				<string>dyn.ah62d4rv4ge80w5pq</string>
 				<string>dyn.ah62d4rv4ge80s52</string>
 				<string>dyn.ah62d4rv4ge80c65r</string>
+				<string>dyn.ah62d4rv4ge81n7dgha</string>
+				<string>dyn.ah62d4rv4ge80q4pxra</string>
 				<string>com.apple.property-list</string>
 				<string>com.apple.rez-source</string>
 				<string>com.apple.xcode.strings-text</string>
@@ -57,6 +59,7 @@
 				<string>public.csh-script</string>
 				<string>public.tcsh-script</string>
 				<string>public.ksh-script</string>
+				<string>public.zsh-script</string>
 				<string>public.source-code</string>
 				<string>public.php-script</string>
 				<string>com.sun.java-source</string>

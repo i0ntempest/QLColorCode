@@ -88,7 +88,7 @@ case ${target} in
         lang=objc
         ;;
     *.pch | *.h | *.hpp )
-        if grep -q "@interface" <(${target}) &> /dev/null; then
+        if grep -q "@interface" < "${target}" &> /dev/null; then
             lang=objc
         else
             lang=h
@@ -102,7 +102,7 @@ case ${target} in
         lang=py
         plugin=(--plug-in python_ref_python_org)
         ;;
-    *.sh | *.zsh | *.bash | *.csh | *.fish | *.bashrc | *.zshrc | *.profile)
+    *.sh | *.ksh | *.zsh | *.bash | *.csh | *.bashrc | *.zshrc | *.profile)
         lang=sh
         plugin=(--plug-in bash_functions)
         ;;
@@ -113,8 +113,14 @@ case ${target} in
     *.cfg | *.properties | *.conf | *.inf | *.ini )
         lang=ini
         ;;
-    *.config )
-        lang=xml
+    *.utf8 | *.config | *.manifest )
+        if grep -q "?xml version" < "${target}" &> /dev/null; then
+            lang=xml
+        elif grep -q ".=." < "${target}" &> /dev/null; then
+            lang=ini
+        else
+            lang=txt
+        fi
         ;;
     *.kmt )
         lang=scala
