@@ -103,7 +103,7 @@ NSData *colorizeURL(CFBundleRef bundle, CFURLRef url, int *status, int thumbnail
                                    @"Menlo", @"font",
                                    //@"edit-xcode", @"hlTheme",
                                    @"edit-xcode", @"hlThumbTheme",
-                                   @"seashell", @"hlThemeLight",
+                                   @"bright", @"hlThemeLight",
                                    @"andes", @"hlThemeDark",
 //                                   @"-lz -j 3 -t 4 --kw-case=capitalize ", @"extraHLFlags",
                                    @"-t 4 --kw-case=capitalize ", @"extraHLFlags",

@@ -31,7 +31,7 @@ Setting the font size (default is `10`):
 
     defaults write org.n8gray.QLColorCode fontSizePoints 9
 
-Setting the color style (defaults are `seashell` for light and `andes` for dark, see [all available themes](http://www.andre-simon.de/dokuwiki/doku.php?id=theme_examples)):
+Setting the color style (defaults are `bright` for light and `andes` for dark, see [all available themes](http://www.andre-simon.de/doku/highlight/en/theme-samples.php)):
 
     defaults write org.n8gray.QLColorCode hlThemeLight ide-xcode
     defaults write org.n8gray.QLColorCode hlThemeDark ide-xcode

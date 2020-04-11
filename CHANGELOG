@@ -1,6 +1,7 @@
 2.2.1
     * Support for Xcode string resources file
     * Support for more assembly file extensions
+    * Default light mode theme is now bright
 2.2.0:
     * Dark mode support!!!! See README for how to change themes
     * Golang and JetBrain IML support
