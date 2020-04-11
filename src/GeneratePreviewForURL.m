@@ -58,9 +58,10 @@ OSStatus GeneratePreviewForURL(void *thisInterface, QLPreviewRequestRef preview,
                               stringForKey:@"webkitTextEncoding"];
     if (!textEncoding || [textEncoding length] == 0)
         textEncoding = @"UTF-8";
-    CFDictionaryRef properties =
-            (CFDictionaryRef)[NSDictionary dictionaryWithObject:textEncoding
-                                                         forKey:(NSString *)kQLPreviewPropertyTextEncodingNameKey];
+    CFDictionaryRef properties = (CFDictionaryRef)@{
+                (__bridge NSString *)kQLPreviewPropertyTextEncodingNameKey : textEncoding,
+                (__bridge NSString *)kQLPreviewPropertyMIMETypeKey : @"text/html",
+            };
 
     if (use_rtf)
         QLPreviewRequestSetDataRepresentation(preview, (CFDataRef)rtf, kUTTypeRTF, properties);
