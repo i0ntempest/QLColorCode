@@ -2,6 +2,7 @@
     * Better handling of some kinds of shell scripts
     * Better handling of .config files
     * Support for .utf8, .manifest file
+    * Fix for Catalina by sbarex
 2.2.1
     * Support for Xcode string resources file
     * Support for more assembly file extensions
