@@ -97,7 +97,7 @@ to QLStephen.
 
 QLColorCode decompiles some formats:
 
-- **Java class**. It requires [jad](http://varaneckas.com/jad/) installed at `/usr/local/bin/jad`.
+<!--- **Java class**. It requires [jad](http://varaneckas.com/jad/) installed at `/usr/local/bin/jad`.-->
 - **Compiled AppleScript**. It requires `osadecompile` installed at `/usr/bin/osadecompile`.
 - **Binary PLIST**. It requires `plutil` installed at `/usr/bin/plutil`.
 
