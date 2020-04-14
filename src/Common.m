@@ -16,6 +16,7 @@
 #import <CoreServices/CoreServices.h>
 #import <Foundation/Foundation.h>
 #import <limits.h>  // PATH_MAX
+#import <Cocoa/Cocoa.h>
 
 #include "Common.h"
 
@@ -114,14 +115,31 @@ NSData *colorizeURL(CFBundleRef bundle, CFURLRef url, int *status, int thumbnail
 
     [env addEntriesFromDictionary:[defaults persistentDomainForName:myDomain]];
 
+    if (@available(macOS 10.15, *)) {
+        BOOL isDark = [[NSApplication sharedApplication].effectiveAppearance.name
+                       isEqualToString:NSAppearanceNameDarkAqua];
+        if (isDark) {
+            [env setObject:[env objectForKey:@"hlThemeDark"] forKey:@"hlTheme"];
+        } else {
+            [env setObject:[env objectForKey:@"hlThemeLight"] forKey:@"hlTheme"];
+        }
+    } else if (@available(macOS 10.14, *)){
+        NSString *systemStyle = [[defaults objectForKey:@"AppleInterfaceStyle"] lowercaseString];
+        if ([systemStyle containsString:@"dark"]) {
+            [env setObject:[env objectForKey:@"hlThemeDark"] forKey:@"hlTheme"];
+        } else {
+            [env setObject:[env objectForKey:@"hlThemeLight"] forKey:@"hlTheme"];
+        }
+    }
     // This overrides hlTheme if hlThumbTheme is set and we're generating a thumbnail
     // (This way we won't irritate people with existing installs)
     // Admittedly, it's a little shady, overriding the set value, but I'd rather complicate the compiled code
-    /*if (thumbnail && [[env allKeys] containsObject:@"hlThumbTheme"]) {
+    if (thumbnail && [[env allKeys] containsObject:@"hlThumbTheme"]) {
+        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlTheme"];
         //[env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlTheme"];
-        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlThemeDark"];
-        [env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlThemeLight"];
-    }*/
+        //[env setObject:[env objectForKey:@"hlThumbTheme"] forKey:@"hlThemeLight"];
+    }
+    [env removeObjectsForKeys:@[@"hlThemeLight", @"hlThemeDark", @"hlThumbTheme"]];
 
     NSString *cmd = [NSString stringWithFormat:
                      @"'%@/colorize.sh' '%@' '%@' %s",

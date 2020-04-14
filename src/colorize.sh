@@ -133,17 +133,17 @@ esac
 debug "Resolved ${target} to language $lang"
 
 go4it () {
-    cmdOpts=(--plug-in reduce_filesize ${plugin} --plug-in outhtml_codefold --syntax=${lang} --quiet --include-style --font=${font} --font-size=${fontSizePoints} --encoding=${textEncoding} ${=extraHLFlags} --validate-input)
+    cmdOpts=(--plug-in reduce_filesize ${plugin} --plug-in outhtml_codefold --syntax=${lang} --style=${hlTheme} --quiet --include-style --font=${font} --font-size=${fontSizePoints} --encoding=${textEncoding} ${=extraHLFlags} --validate-input)
 
-    if [ "${thumb}" = "1" ]; then
-        cmdOpts=(--style=${hlThumbTheme} ${cmdOpts})
-    else
-        if [ "$(defaults read -g AppleInterfaceStyle)" = "Dark" ];then
-            cmdOpts=(--style=${hlThemeDark} ${cmdOpts})
-        else
-            cmdOpts=(--style=${hlThemeLight} ${cmdOpts})
-        fi
-    fi
+#    if [ "${thumb}" = "1" ]; then
+#        cmdOpts=(--style=${hlThumbTheme} ${cmdOpts})
+#    else
+#        if [ "$(defaults read -g AppleInterfaceStyle)" = "Dark" ];then
+#            cmdOpts=(--style=${hlThemeDark} ${cmdOpts})
+#        else
+#            cmdOpts=(--style=${hlThemeLight} ${cmdOpts})
+#        fi
+#    fi
 
     debug "Generating the preview"
     if [ "${thumb}" = "1" ]; then

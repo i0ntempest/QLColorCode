@@ -189,6 +189,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0940;
+				TargetAttributes = {
+					8D57630D048677EA00EA77CD = {
+						LastSwiftMigration = 1140;
+					};
+				};
 			};
 			buildConfigurationList = 2CA326220896AD4900168862 /* Build configuration list for PBXProject "QLColorCode" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -295,21 +300,30 @@
 		2CA3261F0896AD4900168862 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.2;
-				MARKETING_VERSION = 2.2.2;
+				CURRENT_PROJECT_VERSION = 2.2.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MARKETING_VERSION = 2.2.3;
 				OTHER_CFLAGS = "-DDEBUG";
+				SWIFT_OBJC_BRIDGING_HEADER = "QLColorCode-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		2CA326200896AD4900168862 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 2.2.2;
-				MARKETING_VERSION = 2.2.2;
+				CURRENT_PROJECT_VERSION = 2.2.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MARKETING_VERSION = 2.2.3;
+				SWIFT_OBJC_BRIDGING_HEADER = "QLColorCode-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
